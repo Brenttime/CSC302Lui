@@ -1,32 +1,3 @@
-    1  cd /
-    2  ls -la
-    3  cd ~
-    4  ls 
-    5  ls -la
-    6  help
-    7  ?
-    8  uname -r
-    9  lsb_release -a
-   10  lisp
-   11  lisp help
-   12  slime
-   13  clisp
-   14  help
-   15  clear
-   16  emacs
-   17  emacs
-   18  pwd
-   19  cat firstLisp.lisp
-   20  cat > firstLisp.lisp
-   21  ls
-   22  emacs firstLisp.lisp
-   23  top
-   24  emacs firstLisp.lisp
-   25  passwd
-   26  ls
-   27  emacs firstLisp.lisp 
-   28  ls
-   29  emacs firstLisp.lisp 
    30  pwd
    31  ls
    32  ls -l
