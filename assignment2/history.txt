@@ -1,0 +1,78 @@
+    1  cd /
+    2  ls -la
+    3  cd ~
+    4  ls 
+    5  ls -la
+    6  help
+    7  ?
+    8  uname -r
+    9  lsb_release -a
+   10  lisp
+   11  lisp help
+   12  slime
+   13  clisp
+   14  help
+   15  clear
+   16  emacs
+   17  emacs
+   18  pwd
+   19  cat firstLisp.lisp
+   20  cat > firstLisp.lisp
+   21  ls
+   22  emacs firstLisp.lisp
+   23  top
+   24  emacs firstLisp.lisp
+   25  passwd
+   26  ls
+   27  emacs firstLisp.lisp 
+   28  ls
+   29  emacs firstLisp.lisp 
+   30  pwd
+   31  ls
+   32  ls -l
+   33  ls -a
+   34  ls -al
+   35  mkdir CSC302
+   36  cd CSC302/
+   37  pwd
+   38  nano test.txt
+   39  ls -l
+   40  chmod 777 test.txt 
+   41  chmod --help
+   42  chmod -c test.txt 
+   43  chomd 600 test.txt 
+   44  chmod 600 test.txt 
+   45  mvtest test.txt new.txt
+   46  mv test.txt new.txt
+   47  cp new.txt 
+   48  cp new.txt ../
+   49  cd ..
+   50  pwd
+   51  cat .history
+   52  rmdir CSC302/
+   53  rm -r CSC302/
+   54  man rm
+   55  ls
+   56  ls -i new.txt
+   57  ls -inum new.txt 
+   58  cat new.txt
+   59  cat new.txt|more
+   60  nano new.txt 
+   61  cat new.txt
+   62  cat new.txt|grep security
+   63  locate .txt|more
+   64  hostname
+   65  ip addr show
+   66  /sbin/ifconfig
+   67  ping 127.0.0.1
+   68  free
+   69  free -m
+   70  free -g
+   71  top
+   72  finger username
+   73  finger bt876445
+   74  who
+   75  w
+   76  last
+   77  history
+   78  history > history.txt
