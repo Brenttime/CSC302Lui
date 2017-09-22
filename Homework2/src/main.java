@@ -3,6 +3,8 @@ public class main {
 
 	/*
 	 * Encrypt message
+	 * 
+	 * @param plainText - plain text message
 	 */
 	public static String encrypt(String plainText, int shiftKey) 
 	{
@@ -10,14 +12,7 @@ public class main {
 
 		for(int i = 0; i < temp.length; i++)
 		{
-			if(i  < temp.length - shiftKey)
-			{
-				temp[i] = temp[i + shiftKey];
-			}
-			else
-			{
-				temp[i] = plainText.toCharArray()[(i - temp.length) + shiftKey];
-			}
+			temp[i] = plainText.toCharArray()[(i + shiftKey) % plainText.length()];
 		}
 		return plainText = new String(temp);
 	}
@@ -33,18 +28,19 @@ public class main {
 		{
 			if(i < shiftKey)
 			{
-				temp[i] = plainText.toCharArray()[(temp.length) - shiftKey + i];
+				temp[i] = plainText.toCharArray()[((i - shiftKey) + plainText.length()) % plainText.length()];
 			}
 			else
 			{
-				temp[i] = plainText.toCharArray()[i - shiftKey];
+				temp[i] = plainText.toCharArray()[(i - shiftKey) % plainText.length()];
 			}
 		}
 		return plainText = new String(temp);
 	}
 	
-	
-	
+	/*
+	 * Main Method
+	 */
 	public static void main(String[] args) 
 	{
 		String message1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
