@@ -1,29 +1,43 @@
-
+/*
+ * Brent Turner
+ * 9/21/2017
+ * Homework2.java
+ * 
+ * This program is a Caesar cipher program made for CSC302
+ */
 public class main {
 
 	/*
 	 * Encrypt message
 	 * 
 	 * @param plainText - plain text message
+	 * @param shiftKey - key we are using to shift the plain text message
+	 * @return cipherText - the cipherText
 	 */
 	public static String encrypt(String plainText, int shiftKey) 
 	{
 		char[] temp = plainText.toCharArray();
-
+		String cipherText;
+		
 		for(int i = 0; i < temp.length; i++)
 		{
 			temp[i] = plainText.toCharArray()[(i + shiftKey) % plainText.length()];
 		}
-		return plainText = new String(temp);
+		return cipherText = new String(temp);
 	}
 	
 	/*
 	 * Decrypt message
+	 * 
+	 * @param plainText - plain text message
+	 * @param shiftKey - key we are using to shift the plain text message
+	 * @return cipherText - the cipherTex
 	 */
 	public static String decrypt(String plainText, int shiftKey) 
 	{
 		char[] temp = plainText.toCharArray();
-
+		String cipherText;
+		
 		for(int i = 0; i < temp.length; i++)
 		{
 			if(i < shiftKey)
@@ -35,7 +49,7 @@ public class main {
 				temp[i] = plainText.toCharArray()[(i - shiftKey) % plainText.length()];
 			}
 		}
-		return plainText = new String(temp);
+		return cipherText = new String(temp);
 	}
 	
 	/*
