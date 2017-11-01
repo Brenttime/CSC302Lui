@@ -19,8 +19,8 @@ public class main {
 
 	public static void main(String[] args) {
 
-		String message = "message1";
-		String secondMessage = "message2";
+		String message = "m1";
+		String secondMessage = "m2";
 
 		RSA(message, secondMessage);
 	}
@@ -45,6 +45,9 @@ public class main {
 
 		// encrypt
 		byte[] encrypted = encrypt(message.getBytes());
+		byte[] secondEncrypted = encrypt(secondMessage.getBytes());
+		byte[] multiplyMessages = encrypt(new BigInteger(message.getBytes())
+				.multiply(new BigInteger(secondMessage.getBytes())).toString().getBytes());
 
 		// decrypt
 		byte[] decrypted = decrypt(encrypted);
@@ -58,7 +61,8 @@ public class main {
 		System.out.println("Decrypted String: " + new String(decrypted));
 
 		// Prove the homomorphic property of RSA
-		System.out.println("E(m1) * E(m2): " + new BigInteger(message).multiply(new BigInteger(secondMessage)));
+		System.out.println("E(m1) * E(m2): " + new BigInteger(encrypted).multiply(new BigInteger(secondEncrypted))
+				+ " = E(m1*m2): " + new BigInteger(multiplyMessages));
 
 		return new BigInteger(encrypted);
 	}
