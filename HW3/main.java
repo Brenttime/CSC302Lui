@@ -37,7 +37,6 @@ public class main {
 		q = BigInteger.probablePrime(bitLength, r);
 		n = p.multiply(q);
 		phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
-		// e = BigInteger.probablePrime(bitLength / 2, r);
 		e = new BigInteger("13");
 
 		// Ensure that the gcd is equal to one
@@ -94,7 +93,6 @@ public class main {
 		System.out.println("Prove the homomorphic property of RSA");
 		System.out.println("E(m1) * E(m2): " + new BigInteger(encrypted).multiply(new BigInteger(secondEncrypted))
 				+ " = E(m1*m2): " + new BigInteger(multiplyMessages));
-		// System.out.println(new String(decrypt(multiplyMessages)));
 
 		return new BigInteger(encrypted);
 	}
