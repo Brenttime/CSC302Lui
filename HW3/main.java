@@ -28,7 +28,7 @@ public class main {
 	public static BigInteger RSA(String message, String secondMessage) {
 
 		// Decently long BitLength keeps m < n
-		int bitLength = 25;
+		int bitLength = 200;
 
 		// Select just one random number
 		Random r = new Random();
@@ -41,15 +41,12 @@ public class main {
 		e = new BigInteger("13");
 
 		// Ensure that the gcd is equal to one
+		System.out.println("Please Wait Searching for a relatively prime number");
 		while (!phi.gcd(e).equals(BigInteger.ONE)) {
-			e.add(BigInteger.ONE);
+			e = e.add(BigInteger.ONE);
 		}
 
 		d = e.modInverse(phi);
-
-		// TESTING
-		System.out.println(new BigInteger(message.getBytes()) + " " + new BigInteger(secondMessage.getBytes()) + " "
-				+ new BigInteger(message.getBytes()).multiply(new BigInteger(secondMessage.getBytes())));
 
 		// encrypt
 		byte[] encrypted = encrypt(message.getBytes());
@@ -69,10 +66,13 @@ public class main {
 		byte[] verify = verification(signature);
 		byte[] secondVerify = verification(secondSignature);
 
-		// Output for the First Message
+		// Values used for RSA
 		System.out.println("e: " + e);
 		System.out.println("n: " + n);
 		System.out.println("d: " + d);
+
+		// Output for the First Message
+		System.out.println();
 		System.out.println("First Message");
 		System.out.println("Original Message: " + message);
 		System.out.println("Encrypted Message: " + new BigInteger(encrypted));
