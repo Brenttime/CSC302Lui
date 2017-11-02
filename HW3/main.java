@@ -37,7 +37,7 @@ public class main {
 		q = BigInteger.probablePrime(bitLength, r);
 		n = p.multiply(q);
 		phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
-		e = new BigInteger("13");
+		e = new BigInteger("3");
 
 		// Ensure that the gcd is equal to one
 		System.out.println("Please Wait Searching for a relatively prime number");
