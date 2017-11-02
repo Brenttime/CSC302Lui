@@ -27,42 +27,74 @@ public class main {
 
 	public static BigInteger RSA(String message, String secondMessage) {
 
-		int bitLength = 50;
+		// Decently long BitLength keeps m < n
+		int bitLength = 25;
 
+		// Select just one random number
 		Random r = new Random();
 
 		p = BigInteger.probablePrime(bitLength, r);
 		q = BigInteger.probablePrime(bitLength, r);
 		n = p.multiply(q);
 		phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
-		e = BigInteger.probablePrime(bitLength / 2, r);
+		// e = BigInteger.probablePrime(bitLength / 2, r);
+		e = new BigInteger("13");
 
+		// Ensure that the gcd is equal to one
 		while (!phi.gcd(e).equals(BigInteger.ONE)) {
 			e.add(BigInteger.ONE);
 		}
 
 		d = e.modInverse(phi);
 
+		// TESTING
+		System.out.println(new BigInteger(message.getBytes()) + " " + new BigInteger(secondMessage.getBytes()) + " "
+				+ new BigInteger(message.getBytes()).multiply(new BigInteger(secondMessage.getBytes())));
+
 		// encrypt
 		byte[] encrypted = encrypt(message.getBytes());
 		byte[] secondEncrypted = encrypt(secondMessage.getBytes());
-		byte[] multiplyMessages = encrypt(new BigInteger(message.getBytes())
-				.multiply(new BigInteger(secondMessage.getBytes())).toString().getBytes());
+		byte[] multiplyMessages = encrypt(
+				new BigInteger(message.getBytes()).multiply(new BigInteger(secondMessage.getBytes())).toByteArray());
 
 		// decrypt
 		byte[] decrypted = decrypt(encrypted);
+		byte[] secondDecrypted = decrypt(secondEncrypted);
 
-		System.out.println("");
+		// create signatures
+		byte[] signature = signature(message.getBytes());
+		byte[] secondSignature = signature(secondMessage.getBytes());
+
+		// verify signature
+		byte[] verify = verification(signature);
+		byte[] secondVerify = verification(secondSignature);
+
+		// Output for the First Message
 		System.out.println("e: " + e);
 		System.out.println("n: " + n);
 		System.out.println("d: " + d);
+		System.out.println("First Message");
 		System.out.println("Original Message: " + message);
 		System.out.println("Encrypted Message: " + new BigInteger(encrypted));
 		System.out.println("Decrypted String: " + new String(decrypted));
+		System.out.println("Signature: " + new BigInteger(signature));
+		System.out.println("Verification: " + new String(verify));
+
+		// Output for the Second Message
+		System.out.println();
+		System.out.println("Second Message");
+		System.out.println("Original Message: " + secondMessage);
+		System.out.println("Encrypted Message: " + new BigInteger(secondEncrypted));
+		System.out.println("Decrypted String: " + new String(secondDecrypted));
+		System.out.println("Signature: " + new BigInteger(secondSignature));
+		System.out.println("Verification: " + new String(secondVerify));
 
 		// Prove the homomorphic property of RSA
+		System.out.println();
+		System.out.println("Prove the homomorphic property of RSA");
 		System.out.println("E(m1) * E(m2): " + new BigInteger(encrypted).multiply(new BigInteger(secondEncrypted))
 				+ " = E(m1*m2): " + new BigInteger(multiplyMessages));
+		// System.out.println(new String(decrypt(multiplyMessages)));
 
 		return new BigInteger(encrypted);
 	}
@@ -75,5 +107,15 @@ public class main {
 	// Decrypt message
 	public static byte[] decrypt(byte[] message) {
 		return (new BigInteger(message)).modPow(d, n).toByteArray();
+	}
+
+	// signature
+	public static byte[] signature(byte[] message) {
+		return (new BigInteger(message)).modPow(d, n).toByteArray();
+	}
+
+	// verification
+	public static byte[] verification(byte[] message) {
+		return (new BigInteger(message)).modPow(e, n).toByteArray();
 	}
 }
